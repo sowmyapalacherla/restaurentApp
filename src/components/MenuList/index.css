@@ -1,0 +1,12 @@
+.categories {
+  display: flex;
+  align-items: flex-end;
+  padding-left: 0px;
+  margin-top: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .tabs-list-container {
+    margin-top: 48px;
+  }
+}
