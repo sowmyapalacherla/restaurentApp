@@ -20,7 +20,8 @@ class MenuList extends Component {
     categoryList: [],
     activeCategory: '',
     apiStatus: apiStatusConstants.initial,
-    cartList: [],
+    quantity: 0,
+    quantityList: [],
   }
 
   componentDidMount() {
@@ -28,14 +29,14 @@ class MenuList extends Component {
   }
 
   getFormattedData = data => ({
-    name: data.dish_name,
+    dishName: data.dish_name,
     dishId: data.dish_id,
     currency: data.dish_currency,
     price: data.dish_price,
     calories: data.dish_calories,
     availability: data.dish_Availability,
     description: data.dish_description,
-    imageUrl: data.dish_image,
+    dishImage: data.dish_image,
     addOnArray: data.addonCat,
   })
 
@@ -48,10 +49,12 @@ class MenuList extends Component {
       method: 'GET',
     }
     const response = await fetch(apiUrl, options)
+
     if (response.ok) {
       const fetchedData = await response.json()
       const reqObj = fetchedData[0]
       const addData = {}
+      console.log(fetchedData)
       reqObj.table_menu_list.forEach(each => {
         const key = each.menu_category
         const data = each.category_dishes
@@ -96,26 +99,26 @@ class MenuList extends Component {
   }
 
   onDecrementQuantity = dishId => {
-    const {cartList} = this.state
-    const cart = cartList.filter(each => each === dishId)
+    const {quantityList} = this.state
+    const cart = quantityList.filter(each => each === dishId)
     const count = cart.length
     if (count > 0) {
-      const index = cartList.indexOf(dishId)
-      cartList.splice(index, 1)
-      this.setState({cartList})
+      const index = quantityList.indexOf(dishId)
+      quantityList.splice(index, 1)
+      this.setState({quantityList})
     }
   }
 
   onIncrementQuantity = dishId => {
-    this.setState(prev => ({cartList: [...prev.cartList, dishId]}))
+    this.setState(prev => ({quantityList: [...prev.quantityList, dishId]}))
   }
 
   renderProductDetailsView = () => {
-    const {menuList, categoryList, activeCategory, cartList} = this.state
+    const {menuList, categoryList, activeCategory, quantity} = this.state
     // console.log(cartList)
     return (
       <>
-        <Header quantity={cartList} />
+        <Header />
         <ul className="categories">
           {categoryList.map(each => (
             <CategoryDishes
@@ -133,6 +136,7 @@ class MenuList extends Component {
               <Dishes
                 key={each.dishId}
                 details={each}
+                quantity={quantity}
                 incrementCartItemQuantity={this.onIncrementQuantity}
                 decrementCartItemQuantity={this.onDecrementQuantity}
               />
