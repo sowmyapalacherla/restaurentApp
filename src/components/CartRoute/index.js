@@ -7,7 +7,7 @@ import CartSummary from '../CartSummary'
 
 import './index.css'
 
-const Cart = () => (
+const CartRoute = () => (
   <CartContext.Consumer>
     {value => {
       const {cartList, removeAllCartItems} = value
@@ -42,4 +42,4 @@ const Cart = () => (
     }}
   </CartContext.Consumer>
 )
-export default Cart
+export default CartRoute
