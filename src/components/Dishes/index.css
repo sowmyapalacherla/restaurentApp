@@ -1,10 +1,13 @@
 .dish {
   list-style-type: none;
+  border-width: 3px;
+  border-color: #2a3439;
+  padding: 2px;
 }
 
 .name {
   margin-top: 20px;
-  font-size: 5px;
+  font-size: 20px;
 }
 
 .dish-details {
@@ -31,15 +34,15 @@
 }
 .description {
   color: gray;
-  font-size: 20px;
+  font-size: 18px;
 }
 .quantity-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: green;
-  width: 100px;
-  height: 50px;
+  width: 70px;
+  height: 40px;
   border-top-left-radius: 6px;
   border-bottom-right-radius: 6px;
   border-top-right-radius: 6px;
@@ -47,7 +50,7 @@
 }
 .product-image {
   width: 20vw;
-  height: 30vh;
+  height: 25vh;
 }
 .calories {
   text-align: center;
@@ -59,6 +62,7 @@
 .availability {
   color: red;
   font-size: 15px;
+  margin-bottom: 5px;
 }
 .custom {
   color: black;
@@ -84,8 +88,15 @@
 }
 
 .add-to-cart-btn {
-  font-size: 12px;
+  font-size: 5px;
   margin-bottom: 32px;
+  width: 110px;
+  height: 30px;
+  font-weight: 500;
+  background-color: black;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-top: 6px;
 }
 
 @media screen and (min-width: 768px) {
@@ -98,4 +109,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.quantity {
+  text-align: center;
+  color: #ffffff;
+}
+.quantity-controller-button {
+  font-size: 10px;
+  width: 15px;
 }

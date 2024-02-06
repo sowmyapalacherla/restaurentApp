@@ -4,6 +4,7 @@ import CartContext from '../../Context/CartContext'
 import './index.css'
 
 const Header = props => {
+  const {restaurentName} = props
   const onClickLogout = () => {
     const {history} = props
     Cookies.remove('jwt_token')
@@ -32,14 +33,14 @@ const Header = props => {
       <div className="nav-content">
         <Link to="/" className="nav-link">
           <h1 className="heading" key="restaurant_name">
-            UNI Resto Cafe
+            {restaurentName}
           </h1>
         </Link>
         <div className="container">
           <p className="order">My Orders</p>
-          <div>
+          <div className="container">
             <Link to="/cart" className="nav-link">
-              <button type="button" data-testid="cart">
+              <button type="button" data-testid="cart" className="cart-button">
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-cart-icon.png"
                   alt="nav cart"

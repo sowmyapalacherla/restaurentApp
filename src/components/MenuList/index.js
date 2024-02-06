@@ -22,6 +22,7 @@ class MenuList extends Component {
     apiStatus: apiStatusConstants.initial,
     quantity: 0,
     quantityList: [],
+    restaurentName: '',
   }
 
   componentDidMount() {
@@ -55,6 +56,8 @@ class MenuList extends Component {
       const reqObj = fetchedData[0]
       const addData = {}
       console.log(fetchedData)
+      const restaurentName = fetchedData[0].restaurant_name
+
       reqObj.table_menu_list.forEach(each => {
         const key = each.menu_category
         const data = each.category_dishes
@@ -63,11 +66,13 @@ class MenuList extends Component {
       })
 
       const finalList = Object.keys(addData)
+      console.log(restaurentName)
 
       this.setState({
         menuList: addData,
         categoryList: finalList,
         activeCategory: finalList[0],
+        restaurentName,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -114,11 +119,17 @@ class MenuList extends Component {
   }
 
   renderProductDetailsView = () => {
-    const {menuList, categoryList, activeCategory, quantity} = this.state
+    const {
+      menuList,
+      categoryList,
+      activeCategory,
+      quantity,
+      restaurentName,
+    } = this.state
     // console.log(cartList)
     return (
       <>
-        <Header />
+        <Header restaurentName={restaurentName} />
         <ul className="categories">
           {categoryList.map(each => (
             <CategoryDishes

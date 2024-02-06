@@ -74,7 +74,7 @@ const Dishes = props => {
                       </div>
                       <button
                         type="button"
-                        className="button add-to-cart-btn"
+                        className=" add-to-cart-btn"
                         onClick={onClickAddToCart}
                       >
                         ADD TO CART
